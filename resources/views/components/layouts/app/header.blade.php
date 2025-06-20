@@ -15,6 +15,12 @@
                 <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                     {{ __('Dashboard') }}
                 </flux:navbar.item>
+                <flux:navbar.item icon="bell" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>
+                    {{ __('Notifications') }}
+                </flux:navbar.item>
+                <flux:navbar.item icon="chat-bubble-left-right" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>
+                    {{ __('Chat') }}
+                </flux:navbar.item>
             </flux:navbar>
 
             <flux:spacer />
@@ -42,6 +48,11 @@
                     />
                 </flux:tooltip>
             </flux:navbar>
+
+            <!-- Notifications Dropdown -->
+            <div class="relative mx-2">
+                @livewire('notifications-dropdown')
+            </div>
 
             <!-- Desktop User Menu -->
             <flux:dropdown position="top" align="end">
@@ -88,6 +99,11 @@
             </flux:dropdown>
         </flux:header>
 
+        <!-- Mobile Notifications in Header -->
+        <div class="lg:hidden absolute top-0 right-12 h-full flex items-center">
+            @livewire('notifications-dropdown')
+        </div>
+        
         <!-- Mobile Menu -->
         <flux:sidebar stashable sticky class="lg:hidden border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
@@ -99,7 +115,13 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')">
                     <flux:navlist.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
+                        {{ __('Dashboard') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="bell" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>
+                        {{ __('Notifications') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item icon="chat-bubble-left-right" :href="route('chat')" :current="request()->routeIs('chat')" wire:navigate>
+                        {{ __('Chat') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>

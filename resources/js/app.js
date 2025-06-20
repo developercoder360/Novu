@@ -5,3 +5,12 @@
  */
 
 import './echo';
+import './notifications';
+
+// Add user ID to window.Laravel for notifications
+window.Laravel = {
+    ...window.Laravel,
+    user: {
+        id: document.querySelector('meta[name="user-id"]')?.content
+    }
+};
