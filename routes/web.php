@@ -17,6 +17,12 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+    
+    // Chat routes
+    Route::get('/chat', App\Livewire\Chat::class)->name('chat');
+    
+    // Notifications route
+    Route::get('/notifications', App\Livewire\NotificationsPage::class)->name('notifications');
 });
 
 require __DIR__.'/auth.php';
