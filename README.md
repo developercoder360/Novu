@@ -31,7 +31,7 @@ Run the following steps to install **Novu** locally:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/novu.git
+git clone https://github.com/developercoder360/Novu.git
 
 # Navigate into the project
 cd novu
