@@ -43,6 +43,21 @@ composer install
 cp .env.example .env
 php artisan key:generate
 
+# Add this code in .env file
+BROADCAST_CONNECTION=reverb
+
+REVERB_APP_ID=731663
+REVERB_APP_KEY=jfcoebns1ryjnz5zjyxm
+REVERB_APP_SECRET=j3bcfwxo0vdrwnj5h7tb
+REVERB_HOST="localhost"
+REVERB_PORT=8080
+REVERB_SCHEME=http
+
+VITE_REVERB_APP_KEY="${REVERB_APP_KEY}"
+VITE_REVERB_HOST="${REVERB_HOST}"
+VITE_REVERB_PORT="${REVERB_PORT}"
+VITE_REVERB_SCHEME="${REVERB_SCHEME}"
+
 # Run migrations
 php artisan migrate
 
