@@ -77,9 +77,12 @@ class Chat extends Component
         
         $this->message = '';
         $this->messages->push($message);
+
         
-        // Broadcast the message to the recipient
-        $this->dispatch('new-message', messageId: $message->id)->to('user.' . $this->selectedUser->id);
+        // Broadcast that a new message was sent
+        $this->dispatch('new-message', $message->id);
+        
+        
     }
     
     #[On('new-message')]

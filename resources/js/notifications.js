@@ -10,9 +10,12 @@ document.addEventListener('livewire:initialized', () => {
         // Listen for notifications on the user's private channel
         window.Echo.private(`App.Models.User.${userId}`)
             .notification((notification) => {
+
                 // Dispatch a Livewire event to update the notifications dropdown
                 Livewire.dispatch('notification.received', { notification });
-                
+
+                alert(notification);
+
                 // Show a browser notification if supported
                 if ('Notification' in window && Notification.permission === 'granted') {
                     const title = notification.sender_name ? 
@@ -32,7 +35,21 @@ document.addEventListener('livewire:initialized', () => {
         window.Echo.private(`messages.${userId}`)
             .listen('NewMessage', (e) => {
                 // Dispatch a Livewire event to update the chat component
-                Livewire.dispatch('new-message', { messageId: e.messageId });
+                Livewire.dispatch('message', { messageId: e.messageId });
+                
+                // Show a browser notification if supported
+                if ('Notification' in window && Notification.permission === 'granted') {
+                    const title = e.sender_name ? 
+                        `New message from ${e.sender_name}` : 
+                        'New Message';
+                    
+                    const options = {
+                        body: e.content || 'You have a new message',
+                        icon: '/favicon.ico',
+                    };
+                    
+                    new Notification(title, options);
+                }
             })
             .listen('MessagesRead', (e) => {
                 // Dispatch a Livewire event to update read status
