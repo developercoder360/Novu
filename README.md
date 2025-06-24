@@ -66,3 +66,7 @@ npm install && npm run dev
 
 # Start development server
 php artisan serve
+
+#Also-run this command
+php artisan reverb:start
+
